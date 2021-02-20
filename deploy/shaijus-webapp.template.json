@@ -16,6 +16,10 @@
             ],
             "defaultValue": "Free"
         },
+		"shaijus-webappName": {
+            "type": "string",
+            "minLength": 1
+        },
         "shaijus-planWorkerSize": {
             "type": "string",
             "allowedValues": [
@@ -44,7 +48,7 @@
             }
         },
         {
-            "name": "[variables('shaijus-webappName')]",
+            "name": "[parameters('shaijus-webappName')]",
             "type": "Microsoft.Web/sites",
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-08-01",
@@ -56,12 +60,9 @@
                 "displayName": "shaijus-webapp"
             },
             "properties": {
-                "name": "[variables('shaijus-webappName')]",
+                "name": "[parameters('shaijus-webappName')]",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('shaijus-planName'))]"
             }
         }
-    ],
-    "variables": {
-        "shaijus-webappName": "[concat('shaijus-webapp', uniqueString(resourceGroup().id))]"
-    }
+    ]
 }

@@ -5,6 +5,9 @@
     "shaijus-planName": {
       "value": "shaijus-webapp-plan"
     },
+	"shaijus-webappName": {
+      "value": "shaijus-webapp"
+    },
     "shaijus-planSKU": {
       "value": "Standard"
     },
