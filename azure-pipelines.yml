@@ -35,3 +35,9 @@ stages:
             displayName: Publish the application
             inputs:
               command: publish
+
+          
+          - task: PublishBuildArtifacts@1
+            displayName: Publish artifacts
+            inputs:
+              ArtifactName: build-output
