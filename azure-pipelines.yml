@@ -24,3 +24,14 @@ stages:
             displayName: Restore Packages
             inputs:
               command: restore
+          
+          - task: DotNetCoreCLI@2
+            displayName: Build the application
+            inputs:
+              command: build
+              configuration: release
+          
+          - task: DotNetCoreCLI@2
+            displayName: Publish the application
+            inputs:
+              command: publish
