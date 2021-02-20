@@ -16,10 +16,6 @@
             ],
             "defaultValue": "Free"
         },
-		"shaijus-webappName": {
-            "type": "string",
-            "minLength": 1
-        },
         "shaijus-planWorkerSize": {
             "type": "string",
             "allowedValues": [
@@ -28,7 +24,17 @@
                 "2"
             ],
             "defaultValue": "0"
-        }
+        },
+		"shaijus-webappName": {
+            "type": "string",
+            "minLength": 1
+        },
+        "environments":{
+           "type": "array",
+           "defaultValue": [
+               "staging"
+           ]   
+        }     
     },
     "resources": [
         {
@@ -61,6 +67,16 @@
             },
             "properties": {
                 "name": "[parameters('shaijus-webappName')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('shaijus-planName'))]"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/slots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('shaijus-webappName'), '/',parameters('environments')[copyIndex()])]",
+            "location": "East US",
+            "kind": "app",
+            "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('shaijus-planName'))]"
             }
         }
