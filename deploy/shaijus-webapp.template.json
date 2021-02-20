@@ -78,6 +78,13 @@
             "kind": "app",
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('shaijus-planName'))]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/sites/', parameters('shaijus-webappName'))]"
+            ],
+            "copy":{
+                "name":"webPortalSlot",
+                "count":"[length(parameters('environments'))]"
             }
         }
     ]
