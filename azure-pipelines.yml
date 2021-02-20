@@ -35,9 +35,12 @@ stages:
             displayName: Publish the application
             inputs:
               command: publish
+              arguments: '--output $(Build.ArtifactStagingDirectory)'
+
 
           
           - task: PublishBuildArtifacts@1
             displayName: Publish artifacts
             inputs:
               ArtifactName: build-output
+              PathtoPublish: $(Build.ArtifactStagingDirectory)
